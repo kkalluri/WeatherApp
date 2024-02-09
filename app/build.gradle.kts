@@ -23,17 +23,12 @@ android {
     }
 
     buildTypes {
-
         release {
-            buildConfigField("String", "WEATHER_API_KEY", "\"37cbfed6917958368a5ddd9ad96c3388\"")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-        }
-        debug{
-            buildConfigField("String", "WEATHER_API_KEY", "\"37cbfed6917958368a5ddd9ad96c3388\"")
         }
     }
     compileOptions {
@@ -74,6 +69,8 @@ dependencies {
     // Dagger hilt
     implementation("com.google.dagger:hilt-android:2.44.2")
     kapt ("com.google.dagger:hilt-compiler:2.44.2")
+    androidTestImplementation ("com.google.dagger:hilt-android-testing:2.44.2")
+    kaptAndroidTest ("com.google.dagger:hilt-compiler:2.44.2")
 
     // Networking
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -100,7 +97,7 @@ dependencies {
     testImplementation ("org.mockito:mockito-core:5.7.0")
 
 
-
+    androidTestImplementation ("org.mockito:mockito-android:4.+")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))

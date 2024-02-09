@@ -1,8 +1,10 @@
-package com.example.weatherapptechscreen
+package com.example.weatherapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -10,17 +12,19 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.weatherapptechscreen.features.SearchScreen
-import com.example.weatherapptechscreen.features.WeatherInformation
-import com.example.weatherapptechscreen.features.WeatherViewModel
-import com.example.weatherapptechscreen.ui.theme.WeatherAppTechScreenTheme
+import com.example.weatherapp.features.SearchScreen
+import com.example.weatherapp.features.WeatherInfo
+import com.example.weatherapp.features.WeatherViewModel
+import com.example.weatherapp.ui.theme.WeatherAppTechScreenTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var viewModel: WeatherViewModel
+
+
+    @Inject lateinit var viewModel: WeatherViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -34,17 +38,11 @@ class MainActivity : ComponentActivity() {
                     Column(modifier = Modifier) {
 
                         SearchScreen(viewModel = viewModel)
-                        WeatherInformation(viewModel = viewModel,
+                        WeatherInfo(viewModel = viewModel,
                             fetchWeatherDataByCity = { enteredCity ->
                                 viewModel.getWeatherByCity(enteredCity)
-                            },
-                            fetchWeatherDataByCoordinates = {
-                                var latlonData = it.split(",")
-                                viewModel.getWeatherByCoordinates(
-                                    latlonData[0].toDouble(),
-                                    latlonData[1].toDouble()
-                                )
-                            })
+                            }
+                            )
                     }
                 }
             }

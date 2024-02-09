@@ -1,10 +1,6 @@
-package com.example.weatherapptechscreen.data.remote
+package com.example.weatherapp.data.remote
 
-/**
- *
- * SampleApplication
- * Created by venkatakalluri on 9/29/23.
- */
+
 sealed class NetworkResult<T>{
     data class Loading<T>(val isLoading: Boolean) : NetworkResult<T>()
     data class Success<T>(val data: T) : NetworkResult<T>()

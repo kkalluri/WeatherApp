@@ -1,17 +1,11 @@
-package com.example.weatherapptechscreen.di
+package com.example.weatherapp.di
 
-import com.example.weatherapptechscreen.data.remote.WeatherAPI
+import com.example.weatherapp.data.remote.WeatherAPI
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
-/**
- *
- * WeatherAppTechScreen
- * Created by venkatakalluri on 12/4/23.
- * Copyright © 2023 Kaiser Permanente. All rights reserved.
- */
 object RetrofitClient {
 
 

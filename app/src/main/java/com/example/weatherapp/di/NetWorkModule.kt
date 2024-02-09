@@ -1,6 +1,6 @@
-package com.example.weatherapptechscreen.di
+package com.example.weatherapp.di
 
-import com.example.weatherapptechscreen.data.remote.WeatherAPI
+import com.example.weatherapp.data.remote.WeatherAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,28 +11,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-/**
- *
- * WeatherAppTechScreen
- * Created by venkatakalluri on 11/21/23.
- */
 @Module
 @InstallIn(SingletonComponent::class)
 class NetWorkModule {
 
 
-    private val interceptor = run {
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-        httpLoggingInterceptor.apply {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        }
-    }
-
     @Provides
     @Singleton
     fun provideOkHttpClient() =
-        OkHttpClient.Builder().addInterceptor(interceptor)
-            .build()
+        OkHttpClient.Builder().build()
 
 
     @Singleton
